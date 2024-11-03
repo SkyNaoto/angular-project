@@ -30,8 +30,52 @@ export class HomeComponent {
     { productId: 14, rating: 2, productName: 'Mini TV', category: 'TV', price: 250, isSale: true, releaseDate: '2023-01-10', availableQty: 5, imageUrl: 'assets/images/14.jpg' },
     { productId: 15, rating: 5, productName: 'Compact TV', category: 'TV', price: 300, isSale: true, releaseDate: '2023-01-10', availableQty: 5, imageUrl: 'assets/images/15.jpg' }
   ];
+
+  public filterdProducts: Product[] = [];
+  public selectedCategory: string = '';
+
+  constructor(){
+    this.productList = this.markNewProducts(this.productList);
+    this.productList = this.avalilabilityCheck(this.productList);
+    this.filterdProducts = this.productList;
+  }
+
   public trackByIndex(index: number, item: any): number {
     return index;
   }
+
+  private markNewProducts(productList: Product[]): Product[]{
+    const referenceData = new Date('2024-04-01');
+    const threeMonthAgo = new Date(referenceData);
+    threeMonthAgo.setMonth(threeMonthAgo.getMonth()-3);
+
+    return productList.map(product => {
+      const releaseDate = new Date(product.releaseDate);
+      product.isNew = releaseDate > threeMonthAgo;
+      return product;
+    })
+  }
+
+  private avalilabilityCheck(productList:Product[]): Product[]{
+    const defaultValue :number = 3;
+
+    return productList.map(number =>{
+      number.isChecked = defaultValue < number.availableQty;
+      return number;
+    })
+
+  }
+
+  public filterCategory(category: string): void {
+    if(this.selectedCategory === category){
+      this.selectedCategory = '';
+      this.filterdProducts = this.productList;
+    } else {
+      this.selectedCategory = category;
+      this.filterdProducts = this.productList.filter(product => product.category === category);
+    }
+  }
+
+
 
 }

@@ -9,4 +9,5 @@ export interface Product {
     availableQty: number;
     imageUrl: string;
     isNew?: boolean; // Optional property
+    isChecked?: boolean;
 }
