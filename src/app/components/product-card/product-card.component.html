@@ -39,7 +39,8 @@
              @if (product.availableQty == 0){
                 <button type="button" class="btn btn-secondary">Out of Stock</button>    
              } @else {
-                <button type="button" class="btn btn-success">Add to Cart</button>    
+                <button type="button" class="btn btn-success"
+                    (click)="addToCart(product)">Add to Cart</button>    
              }
 
             <!-- <button *ngIf="product.availableQty === 0" type="button" class="btn btn-secondary">Out of Stock</button> -->
