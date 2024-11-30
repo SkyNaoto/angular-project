@@ -50,7 +50,7 @@
                           <td class="align-middle text-left">{{item.productName}}</td>
                           <td class="align-middle text-right">{{item.price}}</td>
                           <td class="align-middle text-center">
-                              <a href="#" data-toggle="modal" data-title="Delete your product?">
+                              <a (click)="removeProduct(i)" data-toggle="modal" data-title="Delete your product?">
                                   <i class="fa fa-trash"></i>
                               </a>
                           </td>
@@ -58,11 +58,11 @@
                       <!-- Display total quantity and price -->
                       <tr>
                           <td colspan="2" class="align-middle text-left"><strong>Quantity</strong></td>
-                          <td colspan="2" class="align-middle text-right">1</td>
+                          <td colspan="2" class="align-middle text-right">{{getTotalQuantity()}}</td>
                       </tr>
                       <tr>
                           <td colspan="2" class="align-middle text-left"><strong>Price</strong></td>
-                          <td colspan="2" class="align-middle text-right">$2200</td>
+                          <td colspan="2" class="align-middle text-right">${{getTotalPrice()}}</td>
                       </tr>
                   </tbody>
               </table>

@@ -39,4 +39,17 @@ export class AppComponent {
   public trackByIndex(index: number, item: Product): number {
     return index;
   }
+
+  public removeProduct(index: number):void {
+    this.cartItems.splice(index, 1);
+  }
+
+  public getTotalQuantity(): number{
+    return this.cartItems.length;
+  }
+
+  public getTotalPrice(): number{
+    return this.cartItems.reduce((total,item)=>
+      total + Number(item.price),0); // reduce メソッド、引数１：合計金額の計算、引数２；初期値
+  }
 }
